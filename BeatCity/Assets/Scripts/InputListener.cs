@@ -16,6 +16,7 @@ public class InputListener : MonoBehaviour
     public Vector3 direction;
 
     public bool jumpInput;
+    public bool runInput;
 
     #endregion
 
@@ -28,6 +29,9 @@ public class InputListener : MonoBehaviour
 
         if(jumpInput == false)
             jumpInput = Input.GetButtonDown("Jump");
+
+        if (runInput == false)
+            runInput = Input.GetButtonDown("Run");
 
         direction = (PlayerMain.pm.ml.cam.transform.right.normalized * xInputValue + new Vector3(PlayerMain.pm.ml.cam.transform.forward.x, 0f, PlayerMain.pm.ml.cam.transform.forward.z).normalized * zInputValue).normalized;
     }

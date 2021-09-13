@@ -15,6 +15,8 @@ public class PlayerMain : MonoBehaviour
     public InputListener il;
     public MouseLook ml;
     public GroundChecker gc;
+    public AnimatorInput ai;
+    public RunController rc;
 
     #endregion
     

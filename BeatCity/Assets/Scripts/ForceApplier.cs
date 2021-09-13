@@ -19,12 +19,19 @@ public class ForceApplier : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(PlayerMain.pm.gc.isGrounded)
+        PlayerMain.pm.gc.VerifyIfGrounded();
+
+        if (PlayerMain.pm.gc.isGrounded)
         {
-            rb.velocity = PlayerMain.pm.il.direction * moveSpeed * Time.fixedDeltaTime;
+            rb.velocity = PlayerMain.pm.il.direction * moveSpeed * PlayerMain.pm.rc.movementXMultiplier * Time.fixedDeltaTime;
 
             if (PlayerMain.pm.il.jumpInput)
-                rb.AddForce(-Vector3.down * jumpForce, ForceMode.Impulse);
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+                PlayerMain.pm.ai.animator.SetTrigger("Jump");
+            }
+                
         }
 
         rb.AddForce(Vector3.down * gravityValue * Time.fixedDeltaTime, ForceMode.Acceleration);
